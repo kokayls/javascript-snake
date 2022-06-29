@@ -10,10 +10,9 @@ drawCanvas();
 
 
 function drawCanvas() {
-    drawBackground(bacgroundColor);
+    drawBackground(backgroundColor);
     window.requestAnimationFrame(drawCanvas);
-    
-    
+
    
     //test area
         //menuButton.render();

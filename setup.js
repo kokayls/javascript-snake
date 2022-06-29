@@ -2,12 +2,12 @@ const canvas = document.getElementById('game_canvas');
 const ctx = canvas.getContext('2d');
 
 //setup canvas size
-canvas.width = 800;
-canvas.height = 500;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 let canvasWidth = canvas.width;
 let canvasHeight = canvas.height;
 
-let bacgroundColor = "#515D5B";
+let backgroundColor = "#515D5B";
 
 
 //from https://stackoverflow.com/a/7838871
@@ -36,4 +36,10 @@ function setContextToDefault(){
 function drawBackground(background) {
     ctx.fillStyle = background;
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+}
+
+function drawText(text, ){
+    ctx.font = "48px serif";
+    ctx.textBaseline = "hanging";
+    ctx.strokeText("Hello world", 0, 100);
 }

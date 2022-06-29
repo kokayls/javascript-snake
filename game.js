@@ -30,7 +30,7 @@ class MenuButton {
         this.isPressed = false;
     }
 
-    render(){
+    render() {
         roundRect(this.x, this.y, this.width, this.height, 10, this.color, 3);
     }
 
@@ -38,27 +38,58 @@ class MenuButton {
 }
 
 class Menu {
-    constructor() {
-        console.log("Menu is created");
-        this.width;
-        this.height;
-        this.buttons = [
-            
-        ]
+    constructor(_width, _height) {
+        this.width = _width;
+        this.height = _height;
+        this.title = "MENU"
+        //this.buttons = this.#initButtons()
+        this.color = "lime";
+
     }
+
+    render() {
+        //draw title
+
+        //draw border
+        this.#drawBorder();
+
+        //draw buttons
+    }
+
+    #initButtons() {
+        //button play/pause
+
+        //sound on
+
+        //settings
+        return [];
+    }
+    #drawBorder() {
+        let borderX = (canvasWidth - this.width) / 2;
+        let borderY = (canvasHeight - this.height) / 2
+
+        roundRect(borderX, borderY, this.width, this.height, 20, this.color, 5);
+    }
+
 }
 
 class Game {
 
     constructor() {
         //console.log("New game is created");
-        this.menu = new Menu();
+        this.menu = new Menu(canvasWidth / 3, canvasHeight - 100);
         this.snake = new Snake();
         this.inGame = false;
     }
 
     update() {
-        //console.log("menu is updated");
+        console.log("menu is updated");
+        if(!this.inGame){
+            this.menu.render();
+        }
+
+        
+        
     }
     startGame() {
         this.inGame = true;
