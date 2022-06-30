@@ -30,7 +30,7 @@ function roundRect( _x, _y, width, height, radius, _color, _lineWidth) {
 
 function setContextToDefault(){
     ctx.lineWidth = 1;
-    //context.strokeStyle = '#000000';
+    //ctx.strokeStyle = '#000000';
 }
 
 function drawBackground(background) {
@@ -38,8 +38,11 @@ function drawBackground(background) {
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 }
 
-function drawText(text, ){
-    ctx.font = "48px serif";
+function drawText(text, x, y, font, color){
+    ctx.strokeStyle = color
+    ctx.textAlign = 'center';
+    ctx.font = font;
     ctx.textBaseline = "hanging";
-    ctx.strokeText("Hello world", 0, 100);
+    ctx.strokeText(text, x, y);
+    //setContextToDefault();
 }

@@ -31,7 +31,10 @@ class MenuButton {
     }
 
     render() {
-        roundRect(this.x, this.y, this.width, this.height, 10, this.color, 3);
+        //render border
+        roundRect(this.x, this.y, this.width, this.height, this.height / 2, this.color, 3);
+        //render text
+        drawText(this.text, (canvasWidth / 2), this.y + 14, "28px Comic Sans MS", this.color);
     }
 
 
@@ -39,36 +42,41 @@ class MenuButton {
 
 class Menu {
     constructor(_width, _height) {
+
         this.width = _width;
         this.height = _height;
-        this.title = "MENU"
-        //this.buttons = this.#initButtons()
+        this.X = (canvasWidth - this.width) / 2;
+        this.Y = (canvasHeight - this.height) / 2
+        this.title = "SNAKE"
+        this.buttons = this.#initButtons()
         this.color = "lime";
 
     }
 
     render() {
         //draw title
-
+        drawText(this.title, canvasWidth / 2, this.Y + 50, "48px Comic Sans MS", this.color)
         //draw border
         this.#drawBorder();
 
         //draw buttons
+        for (const button of this.buttons) {
+            button.render();
+        }
     }
 
     #initButtons() {
-        //button play/pause
+        let inputButtons = []
 
-        //sound on
-
-        //settings
-        return [];
+        inputButtons.push(new MenuButton((canvasWidth / 2) - (this.width / 4), 200, (this.width / 2), 60, "Play", "#17FFCE"));
+        inputButtons.push(new MenuButton((canvasWidth / 2) - (this.width / 4), 300, (this.width / 2), 60, "Sound On", "#17FFCE"));
+        inputButtons.push(new MenuButton((canvasWidth / 2) - (this.width / 4), 400, (this.width / 2), 60, "Settings", "#17FFCE"));
+       
+        return inputButtons;
     }
-    #drawBorder() {
-        let borderX = (canvasWidth - this.width) / 2;
-        let borderY = (canvasHeight - this.height) / 2
 
-        roundRect(borderX, borderY, this.width, this.height, 20, this.color, 5);
+    #drawBorder() {
+        roundRect(this.X, this.Y, this.width, this.height, 20, this.color, 5);
     }
 
 }
@@ -84,12 +92,11 @@ class Game {
 
     update() {
         console.log("menu is updated");
-        if(!this.inGame){
+        if (!this.inGame) {
             this.menu.render();
         }
 
-        
-        
+
     }
     startGame() {
         this.inGame = true;
