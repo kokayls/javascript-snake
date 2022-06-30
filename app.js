@@ -5,14 +5,6 @@ drawCanvas();
 
 
 
-function drawCanvas() {
-    drawBackground(backgroundColor);
-    window.requestAnimationFrame(drawCanvas);
-
-
-    game.update();
-
-}
 
 
 
