@@ -56,9 +56,14 @@ function setContextToDefault() {
     //ctx.strokeStyle = '#000000';
 }
 
-function drawBackground(background) {
-    ctx.fillStyle = background;
+function drawBackground(_color) {
+    ctx.fillStyle = _color;
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+}
+
+function drawBackground(_color, _x, _y, _width, _height) {
+    ctx.fillStyle = _color;
+    ctx.fillRect(_x, _y, _width, _height);
 }
 
 function drawText(text, x, y, font, color) {
@@ -72,6 +77,11 @@ function drawText(text, x, y, font, color) {
 
 function isOverButton() {
 
+}
+
+function stopMusic(){
+    music.pause();
+    music.currentTime = 0;
 }
 canvas.addEventListener('mousemove', e => {
     mousePosition.x = e.offsetX;
@@ -88,3 +98,4 @@ document.addEventListener('click', () => {
     music.play();
     music.volume = 0.2;
 });
+
