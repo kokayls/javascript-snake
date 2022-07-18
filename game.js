@@ -10,17 +10,13 @@ class Snake {
 
     constructor() {
         //console.log("Snake is created");
-        this.head = {
-            x: 0,
-            y: 0
-        }
+        this.position = new Point(10, 10);
         this.sections = [];
     }
 
     addSection() {
         this.sections.push(new SnakeSection());
     }
-
 
 }
 
@@ -120,16 +116,18 @@ class Tile {
 class Map {
     constructor(_tilesX, _tilesY) {
         this.minimumBorder = 10;
-        this.tilesX = _tilesX;
-        this.tilesY = _tilesY;
+        this.numberOfTilesX = _tilesX;
+        this.numberOfTilesY = _tilesY;
+        console.log(this.numberOfTilesX);
+        console.log(this.numberOfTilesY);
         this.tileSizeX = Math.floor((canvasWidth - this.minimumBorder) / _tilesX);
         this.tileSizeY = Math.floor((canvasHeight - this.minimumBorder) / _tilesY);
-        this.width = this.tileSizeX * this.tilesX;
-        this.height = this.tileSizeY * this.tilesY;
+        this.width = this.tileSizeX * this.numberOfTilesX;
+        this.height = this.tileSizeY * this.numberOfTilesY;
         this.positionX = (canvasWidth - (this.width)) / 2;
         this.positionY = (canvasHeight - (this.height)) / 2;
         this.color = 'black';
-        this.tiles = [];
+        this.tiles = this.#createTiles(this.numberOfTilesX - 1, this.numberOfTilesY - 1);
 
     }
     render() {
@@ -140,6 +138,17 @@ class Map {
     #renderBackrdound() {
         drawBackground(this.color, this.positionX, this.positionY, this.width, this.height)
     }
+    #createTiles(width, height) {
+        var arr = [];
+        for(let i = 0; i < height; i++) {
+            arr[i] = [];
+            for(let j = 0; j < width; j++) {
+                arr[i][j] = new Tile(i, j);
+            }
+        }
+        return arr;
+    }
+    
 
 }
 class Game {
@@ -147,8 +156,12 @@ class Game {
     constructor() {
         //console.log("New game is created");
         this.menu = new Menu(canvasWidth / 3, canvasHeight - 100);
-        this.snake = new Snake();
+        
         this.gameMap = new Map(60, 40);
+        this.snake = new Snake(
+            this.gameMap.numberOfTilesX / 2,
+            this.gameMap.numberOfTilesY / 2
+        );
     }
 
     update() {

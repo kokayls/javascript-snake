@@ -75,6 +75,18 @@ function drawText(text, x, y, font, color) {
     //setContextToDefault();
 }
 
+//https://stackoverflow.com/questions/13808325/creating-a-2d-array-with-specific-length-and-width
+function makeArray(width, height, value) {
+    var arr = [];
+    for(let i = 0; i < height; i++) {
+        arr[i] = [];
+        for(let j = 0; j < width; j++) {
+            arr[i][j] = value;
+        }
+    }
+    return arr;
+}
+
 function isOverButton() {
 
 }
